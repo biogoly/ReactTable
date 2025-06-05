@@ -582,7 +582,8 @@ public:
         uint8_t hue = g_Surface[x][y];
         if (hue == 255) return CRGB::Black;
         CRGB color = ColorFromPalette(m_palette, hue);
-        color %= scaledown;
+        uint8_t scale = (scaledown * 255) / 100;
+        color.nscale8_video(scale);
         return color;
     }
 
